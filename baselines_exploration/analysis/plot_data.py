@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
 DATA_DIR = Path("~/Documents/pan25-generative-ai-detection-task1-train").expanduser()
-OUT_DIR = Path("~/Documents/pan-project/research/plots").expanduser()
+OUT_DIR = Path("~/Documents/pan-project/baselines_exploration/analysis/plots").expanduser()
 OUT_DIR.mkdir(exist_ok=True)
 
 

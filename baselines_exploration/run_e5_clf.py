@@ -1,4 +1,4 @@
-# usage: python run_semantic_struct.py [--clusters 50] [--ngram 2]
+# usage: python run_e5_clf.py [--model intfloat/e5-large-v2]
 
 import argparse
 import json
@@ -6,11 +6,13 @@ from collections import defaultdict
 from pathlib import Path
 import sys
 
+import numpy as np
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from models.semantic_struct import SemanticStructClf
+from detectors.e5_clf import E5Clf
 
 DATA_DIR = Path("~/Documents/pan25-generative-ai-detection-task1-train").expanduser()
-OUT_DIR = DATA_DIR / "output_semantic"
+OUT_DIR = DATA_DIR / "output_e5_clf"
 OUT_DIR.mkdir(exist_ok=True)
 
 
@@ -39,6 +41,7 @@ def eval_preds(val_recs, pred_map, thr=0.5):
     acc, prec, rec, f1 = metrics(tp, fp, tn, fn)
     print(f"  acc={acc:.3f}  prec={prec:.3f}  rec={rec:.3f}  f1={f1:.3f}")
     print(f"  tp={tp}  fp={fp}  tn={tn}  fn={fn}")
+    return pred_map
 
 
 def eval_by_genre(val_recs, pred_map, thr=0.5):
@@ -72,19 +75,14 @@ def eval_by_model(val_recs, pred_map, thr=0.5):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--clusters", type=int, default=50)
-    ap.add_argument("--ngram", type=int, default=2)
-    ap.add_argument("--max-features", type=int, default=2000)
+    ap.add_argument("--model", default="intfloat/e5-small-v2")
+    ap.add_argument("--save", action="store_true")
     args = ap.parse_args()
 
     trn_recs = load(DATA_DIR / "train.jsonl")
     val_recs = load(DATA_DIR / "val.jsonl")
 
-    clf = SemanticStructClf(
-        n_clusters=args.clusters,
-        n_gram=args.ngram,
-        max_ftrs=args.max_features,
-    )
+    clf = E5Clf(mdl_nm=args.model)
     clf.fit(trn_recs, val_recs)
 
     print("val results:")
@@ -94,11 +92,17 @@ def main():
     eval_by_genre(val_recs, pred_map)
     eval_by_model(val_recs, pred_map)
 
-    filename = f"semantic_k{args.clusters}_n{args.ngram}.jsonl"
-    with open(OUT_DIR / filename, "w") as f:
+    mdl_tag = args.model.split("/")[-1]
+    out_path = OUT_DIR / f"e5_{mdl_tag}.jsonl"
+    with open(out_path, "w") as f:
         for id, score in pred_map.items():
             f.write(json.dumps({"id": id, "label": score}) + "\n")
-    print(f"saved to {OUT_DIR / filename}")
+    print(f"saved predictions to {out_path}")
+
+    if args.save:
+        save_path = Path("~/Documents/pan-project/models").expanduser() / f"e5_{mdl_tag}_clf.pkl"
+        clf.save(save_path)
+        print(f"saved model to {save_path}")
 
 
 if __name__ == "__main__":

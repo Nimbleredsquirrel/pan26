@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler
 DATA_DIR = Path("~/Documents/pan25-generative-ai-detection-task1-train").expanduser()
 MDL_DIR = Path("~/Documents/pan-project/models").expanduser()
 
-MDL_NM = "intfloat/e5-small-v2"   # ~33MB, fast — swap for e5-large-v2 (~1.3GB) for more power
+MDL_NM = "intfloat/e5-small-v2"
 
 
 def load(path):

@@ -11,7 +11,7 @@ import sys
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from models.stylo_clf import StyloClf, load
+from detectors.stylo_clf import StyloClf, load
 
 DATA_DIR = Path("~/Documents/pan25-generative-ai-detection-task1-train").expanduser()
 MDL_DIR = Path("~/Documents/pan-project/models").expanduser()
@@ -109,7 +109,7 @@ def main():
             f.write(json.dumps({"id": id, "label": float(score)}) + "\n")
     print(f"saved predictions to {out_dir / filename}")
 
-    imp_path = Path("~/Documents/pan-project/research").expanduser()
+    imp_path = Path("~/Documents/pan-project/baselines_exploration/results").expanduser()
     imp_name = "feature_importance_gltr.json" if args.gltr else "feature_importance_stylo.json"
     imp = {name: int(v) for name, v in clf.feature_importance()}
     with open(imp_path / imp_name, "w") as f:

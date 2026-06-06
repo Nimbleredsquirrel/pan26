@@ -4,3 +4,4 @@ __pycache__/
 *.DS_Store
 binoculars.jsonl
 progress_report.html
+*.pt

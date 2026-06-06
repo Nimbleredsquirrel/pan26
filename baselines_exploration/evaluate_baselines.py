@@ -164,7 +164,7 @@ def main():
         print(f"  {m:<40} {n:>5}  {dr:>12.3f}")
 
     out = {name: sc for name, (sc, _) in all_results.items()}
-    out_path = Path("~/Documents/pan-project/research/eval_results.json").expanduser()
+    out_path = Path("~/Documents/pan-project/baselines_exploration/results/eval_results.json").expanduser()
     with open(out_path, "w") as f:
         json.dump(out, f, indent=2)
     print(f"saved to {out_path}")

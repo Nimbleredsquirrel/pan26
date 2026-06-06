@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from models.fast_detect_gpt import FastDetectGPT
+from detectors.fast_detect_gpt import FastDetectGPT
 
 DATA_DIR = Path("~/Documents/pan25-generative-ai-detection-task1-train").expanduser()
 OUT_DIR = DATA_DIR / "output_fast_detect"

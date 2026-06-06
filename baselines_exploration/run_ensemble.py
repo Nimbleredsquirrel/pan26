@@ -9,14 +9,14 @@ from sklearn.preprocessing import StandardScaler
 DATA_DIR = Path("~/Documents/pan25-generative-ai-detection-task1-train").expanduser()
 
 PREDS = {
-    "tfidf":       DATA_DIR / "output_tfidf"        / "tfidf.jsonl",
-    "tfidf_5k":    DATA_DIR / "output_tfidf_retrain" / "tfidf_best.jsonl",
-    "ppmd":        DATA_DIR / "output_ppmd"          / "ppmd.jsonl",
-    "binoculars":  DATA_DIR / "output_binoculars"    / "binoculars.jsonl",
-    "stylo":       DATA_DIR / "output_stylo_clf"     / "stylo.jsonl",
-    "stylo_gltr":  DATA_DIR / "output_stylo_clf"     / "stylo_gltr.jsonl",
-    "semantic":    DATA_DIR / "output_semantic"      / "semantic_k50_n2.jsonl",
-    "e5":          DATA_DIR / "output_e5_clf"        / "e5_e5-small-v2.jsonl",
+    "tfidf": DATA_DIR / "output_tfidf" / "tfidf.jsonl",
+    "tfidf_5k": DATA_DIR / "output_tfidf_retrain" / "tfidf_best.jsonl",
+    "ppmd": DATA_DIR / "output_ppmd" / "ppmd.jsonl",
+    "binoculars": DATA_DIR / "output_binoculars"  / "binoculars.jsonl",
+    "stylo": DATA_DIR / "output_stylo_clf" / "stylo.jsonl",
+    "stylo_gltr": DATA_DIR / "output_stylo_clf" / "stylo_gltr.jsonl",
+    "semantic": DATA_DIR / "output_semantic" / "semantic_k50_n2.jsonl",
+    "e5": DATA_DIR / "output_e5_clf" / "e5_e5-small-v2.jsonl",
 }
 
 
