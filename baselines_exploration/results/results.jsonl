@@ -1,0 +1,10 @@
+{"run": "stylo_only", "acc": 0.947, "prec": 0.955, "rec": 0.964, "f1": 0.959, "features": "stylometric only (14 features)", "model": "lgbm", "notes": "no gltr, no gpu needed"}
+{"run": "stylo_gltr", "acc": 0.958, "prec": 0.962, "rec": 0.974, "f1": 0.968, "features": "stylometric + gltr (21 features)", "model": "lgbm", "notes": "gpt2 gltr features added"}
+{"run": "ensemble_simple_avg", "acc": 0.973, "prec": 0.965, "rec": 0.994, "f1": 0.979, "features": "tfidf+ppmd+binoculars+stylo", "model": "average", "notes": ""}
+{"run": "ensemble_avg_no_tfidf", "acc": 0.961, "prec": 0.953, "rec": 0.987, "f1": 0.970, "features": "ppmd+binoculars+stylo", "model": "average", "notes": "realistic generalization estimate"}
+{"run": "ensemble_weighted_avg", "acc": 0.974, "prec": 0.966, "rec": 0.994, "f1": 0.980, "features": "tfidf+ppmd+binoculars+stylo", "model": "weighted_average", "notes": "weights by val acc"}
+{"run": "ensemble_meta_lr", "acc": 0.988, "prec": 0.990, "rec": 0.992, "f1": 0.991, "features": "tfidf+ppmd+binoculars+stylo", "model": "logistic_regression_meta_5fold_cv", "notes": "ppmd gets negative weight -0.86, tfidf=3.94, binoculars=2.19, stylo=1.68"}
+{"run": "tfidf_baseline", "acc": 0.974, "prec": 0.972, "rec": 0.988, "f1": 0.980, "features": "tfidf 1-4gram top1000", "model": "linear_svc", "notes": "pre-trained on pan25 train, will degrade on new models"}
+{"run": "binoculars_baseline", "acc": 0.865, "prec": 0.857, "rec": 0.949, "f1": 0.901, "features": "falcon-7b perplexity ratio", "model": "binoculars", "notes": "zero-shot, gpt-4.5-preview only 8.9% detection"}
+{"run": "ppmd_baseline", "acc": 0.736, "prec": 0.738, "rec": 0.913, "f1": 0.817, "features": "ppmd compression cosine", "model": "ppmd", "notes": "zero-shot unsupervised, 748 fp"}
+{"run": "stylo_gltr", "acc": 0.9585, "features": "stylometric+gltr", "n_features": 21, "model": "lgbm", "best_iter": 253}

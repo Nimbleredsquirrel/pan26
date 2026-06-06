@@ -1,0 +1,23 @@
+{
+  "punct_dens": 1251,
+  "avg_wrd_ln": 1222,
+  "hapax_rate": 1202,
+  "mttr": 1167,
+  "lowercase_ratio": 1127,
+  "gltr_frac_top10": 1101,
+  "n_chars": 954,
+  "bigram_uniq": 954,
+  "burstiness": 935,
+  "verb_ratio": 850,
+  "n_wrds": 802,
+  "avg_snt_ln": 770,
+  "ttr": 566,
+  "n_snts": 473,
+  "gltr_mean_rank": 469,
+  "gltr_rank_std": 439,
+  "gltr_frac_top100": 410,
+  "gltr_median_rank": 407,
+  "gltr_frac_top1000": 287,
+  "spelling_err_rate": 174,
+  "gltr_frac_tail": 126
+}
